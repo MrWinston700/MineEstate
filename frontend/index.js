@@ -16,25 +16,24 @@ class House {
     }
 };
 document.addEventListener("DOMContentLoaded", function() { 
-
+    
+    
     document.addEventListener("submit", function(e){
         
         e.preventDefault();
-
-        fetch('http://127.0.0.1:5500/frontend/index.html')
-        .then(function(response) {
-        return response.json();
-        }).then(function(json) {
-        console.log(json);
-        });
-
         const price = document.querySelector("#price").value;
         const description = document.querySelector("#description").value;
+        const size = document.querySelector("#size").value;
+        const style = document.querySelector("#style").value;
+        const neighborhood = document.querySelector("#neighborhood").value;
 
+        console.log(price);
+        console.log(description);
+
+        
     
     })
 
-console.log(price)
 })
 
 
