@@ -1,3 +1,28 @@
 p {
     color: red;
 }
+
+div.card {
+    background-color: #eeeeee;
+    height: 450px;
+    width: 365px;
+    box-shadow: 10px 10px maroon;
+    padding: 100px;
+    border-radius: 10px;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: blanchedalmond;
+  }
+
+  main {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+    margin: auto;
+    grid-gap: 60px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+  }
