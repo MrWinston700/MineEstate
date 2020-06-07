@@ -15,6 +15,9 @@ class House {
         this.neighborhood = neighborhood
     }
 };
+
+const BASE_URL = "http://localhost:3000"
+const HOUSES_URL = `${BASE_URL}/houses`
 document.addEventListener("DOMContentLoaded", function() { 
     
     
@@ -26,7 +29,30 @@ document.addEventListener("DOMContentLoaded", function() {
         const size = document.querySelector("#size").value;
         const style = document.querySelector("#style").value;
         const neighborhood = document.querySelector("#neighborhood").value;
+        let current_house = new House(price,description,size,style,neighborhood);
+        
+        
+        let configObj = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json"
+            },
+            body: JSON.stringify({
+              'price': `${price}`,
+              'description': `${description}`,
+              'size': `${size}`,
+              'style': `${style}`,
+              'neighborhood': `${neighborhood}`
+            })
+          };
 
+          fetch(HOUSES_URL, configObj)
+          .then(function(response) {
+            return response.json();
+          });
+
+        console.log(current_house)
         console.log(price);
         console.log(description);
 
