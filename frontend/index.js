@@ -16,8 +16,7 @@ class House {
     }
 };
 
-const BASE_URL = "http://localhost:3000"
-const HOUSES_URL = `${BASE_URL}/houses`
+const HOUSES_URL = "http://localhost:3000/houses"
 document.addEventListener("DOMContentLoaded", function() { 
     
     
@@ -46,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
               'neighborhood': `${neighborhood}`
             })
           };
-
+        debugger
           fetch(HOUSES_URL, configObj)
           .then(function(response) {
             return response.json();
