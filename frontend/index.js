@@ -28,6 +28,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const size = document.querySelector("#size").value;
         const style = document.querySelector("#style").value;
         const neighborhood = document.querySelector("#neighborhood").value;
+        let login_username = document.querySelector("#login_username").value;
+        let login_password = document.querySelector("#login_password").value;
+        if (login_username == "" || login_password == "") {
+        const signup_username = document.querySelector("#signup_username").value;
+        const signup_password = document.querySelector("#signup_password").value;
+        }
+        console.log(signup_username)
         let current_house = new House(price,description,size,style,neighborhood);
         
         
@@ -38,6 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
               "Accept": "application/json"
             },
             body: JSON.stringify({
+              'username': `${login_username}`,
+              'password': `${login_password}`,
               'price': `${price}`,
               'description': `${description}`,
               'size': `${size}`,
@@ -51,9 +60,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
           });
 
-        console.log(current_house)
-        console.log(price);
-        console.log(description);
+        
 
         
     

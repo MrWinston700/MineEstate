@@ -6,7 +6,7 @@ div.card {
     background-color: #eeeeee;
     height: 450px;
     width: 365px;
-    box-shadow: 10px 10px maroon;
+    box-shadow: 10px 10px #999999;
     padding: 100px;
     border-radius: 10px;
   }
@@ -14,7 +14,7 @@ div.card {
   body {
     margin: 0;
     padding: 0;
-    background-color: blanchedalmond;
+    background-color: #e6e6e6;
   }
 
   main {
@@ -25,4 +25,8 @@ div.card {
     padding-top: 10px;
     padding-bottom: 30px;
 
+  }
+
+  #header {
+    
   }
