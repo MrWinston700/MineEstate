@@ -11,10 +11,6 @@ module SessionsHelper
         !!session[:user_id]
     end
 
-    def redirect_if_not_logged_in
-        redirect_to '/' if !logged_in?
-    end
-
     def log_out
         session.delete(:user_id)
         @current_user = nil 

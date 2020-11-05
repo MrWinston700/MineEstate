@@ -1,12 +1,10 @@
 class HousesController < ApplicationController
     def create
-      #user = User.find(username: params[:username]) || User.create(username: params[:username]) 
-
+      binding.pry
       house = House.create(house_params)
-      #user.houses << house
-      #user.save
-
-      #render json: house
+      
+      
+      render json: HouseSerializer.new(house).to_serialized_json
     end
 
     private

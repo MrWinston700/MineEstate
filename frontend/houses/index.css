@@ -1,0 +1,54 @@
+p {
+    color: red;
+}
+
+div.card {
+    background-color: #eeeeee;
+    height: 450px;
+    width: 365px;
+    box-shadow: 10px 10px #999999;
+    border-radius: 10px;
+    margin: auto;
+  }
+
+  body {
+    margin: auto;
+    background-color: #e6e6e6;
+    
+  }
+
+  main {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: auto auto auto;
+    margin: auto;
+    grid-gap: 30px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+  }
+
+  div#justPic {
+    background-color: coral;
+    height: 300px;
+  }
+
+  #head {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    background-color: cornflowerblue;
+    height: 80px;
+    
+  }
+
+  #footer {
+    background-color: chartreuse;
+  }
+
+  @media screen and (max-width: 800px) {
+    body, main, div.card, #footer {
+      width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+  }

@@ -1,14 +1,27 @@
 class SessionsController < ApplicationController
+
+    
     def home  
       # this should render all the house infos to the dom 
+      if logged_in?
+        binding.pry
+      else
+        redirect_to new_session_path
+      end
+    
+    end
+
+    def new
+      
     end
   
     def create
-        #this will establish our sessions      
-        @user = User.find_by(username: username) || @user = User.create(name: name, password: SecureRandom.hex)
+        
+        binding.pry
+        @user = User.find_by(username: username)
 
           if @user && @user.authenticate(params[:password])
-            log_in @user 
+            log_in @user
           else
             @error = "could not log in. user or password is invalid"
           end
@@ -17,5 +30,11 @@ class SessionsController < ApplicationController
   
     def destroy
       log_out
+    end
+
+    private
+
+    def session_params
+      params.require(:user).permit(:username, :password)
     end
 end
