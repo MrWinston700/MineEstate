@@ -44,6 +44,7 @@
         </div>
 
         <form id="uploadForm">
+            <p>Upload</p>
             <label for="files">Select files:</label>
             <input type="file" id="files" name="files" multiple><br><br>
         
@@ -57,13 +58,17 @@
         </form> 
 
         <form id="signinForm">
+            <p>Sign in</p>
             <input id="login_username" placeholder="Username"> </input>
             <input type="password" id="login_password" placeholder="password"> </input>
             <input type="submit" value="submit">
         </form>
+        <form id="logoutForm">
+            <input type ="submit" value="logout"> </input>
+        </form>
 
         <form id="signupForm">
-            <p>Not a user?</p>
+            <p>Not a user? Sign up below!</p>
             <input id="signup_username" placeholder="Enter a unique username"> </input>
             <input type="password" id="signup_password" placeholder="password"> </input>
             <input id="email" placeholder="email"> </input>
@@ -71,5 +76,7 @@
             <input id="country" placeholder="country"> </input>
             <input type="submit" value="submit">
         </form>
+
+        
     </body>
 </html>

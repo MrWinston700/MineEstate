@@ -19,11 +19,14 @@ class House {
 const HOUSES_URL = "http://localhost:3000/houses"
 const USER_NEW_URL = "http://localhost:3000/users"
 const SESSIONS_NEW_URL = "http://localhost:3000/sessions"
+const SESSIONS_LOGOUT_URL = "http://localhost:3000/logout"
+
 document.addEventListener("DOMContentLoaded", function() { 
     
-    const signupSubmit = document.querySelector("#signupForm")
-    const signinSubmit = document.querySelector("#signinForm")
+    const signupForm = document.querySelector("#signupForm")
+    const signinForm = document.querySelector("#signinForm")
     const uploadForm = document.querySelector("#uploadForm")
+    const logoutForm = document.querySelector("#logoutForm")
     uploadForm.addEventListener("submit", function(e){
         
         e.preventDefault();
@@ -95,6 +98,11 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function(json){
+        if (json === "good") {
+          alert("You've been Logged in!")
+        } else {
+          alert("Log in failed")
+        }
 
       })
     });
@@ -129,10 +137,36 @@ document.addEventListener("DOMContentLoaded", function() {
       
         if (json === "good") {
           alert("You've been Logged in!")
+        } else {
+          alert("Log in failed")
         }
         
       })
-    })
+    });
+
+    logoutForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      let configObj = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        }
+        
+      };
+
+      fetch(SESSIONS_LOGOUT_URL, configObj)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(json){
+        if (json === "good") {
+          alert("You've been Logged out!")
+        } else {
+          alert("Log in failed?")
+        }
+      })
+    });
 
 })
 

@@ -17,19 +17,22 @@ class SessionsController < ApplicationController
   
     def create
         
-        binding.pry
-        @user = User.find_by(username: username)
-
+        @user = User.find_by(username: params[:username])
+        status = "bad"
           if @user && @user.authenticate(params[:password])
             log_in @user
+            status = "good"
+            render json: status.to_json
           else
-            @error = "could not log in. user or password is invalid"
+            render json: status.to_json
           end
     end
   
   
     def destroy
       log_out
+      status = "good"
+      render json: status.to_json
     end
 
     private
