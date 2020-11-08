@@ -1,18 +1,26 @@
 module SessionsHelper
     def log_in(user)
-        session[:user_id] = user.id
+        @@token = SecureRandom.hex
+        user.token = @@token
+        set_current_user(user)
+        binding.pry
+    end
+
+    def set_current_user(user)
+        @my_user = user
     end
 
     def current_user
-        @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+        @my_user
     end
 
     def logged_in?
-        !!session[:user_id]
+        !!(@@token == current_user.token)
     end
 
     def log_out
-        session.delete(:user_id)
-        @current_user = nil 
+        @@token = "0"
+        set_current_user(nil)
+        binding.pry
     end
 end

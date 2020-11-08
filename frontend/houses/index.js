@@ -17,16 +17,36 @@ class House {
 };
 
 const HOUSES_URL = "http://localhost:3000/houses"
-const USER_NEW_URL = "http://localhost:3000/users"
-const SESSIONS_NEW_URL = "http://localhost:3000/sessions"
+const USERS_URL = "http://localhost:3000/users"
+const SESSIONS_URL = "http://localhost:3000/sessions"
 const SESSIONS_LOGOUT_URL = "http://localhost:3000/logout"
 
 document.addEventListener("DOMContentLoaded", function() { 
-    
+  let configObj = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+  };
+
+  fetch(HOUSES_URL, configObj)
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json){
+    if (json === "good") {
+      alert("You've been Logged in!")
+    } else {
+      alert("Log in failed")
+    }
+
+  })
     const signupForm = document.querySelector("#signupForm")
     const signinForm = document.querySelector("#signinForm")
     const uploadForm = document.querySelector("#uploadForm")
     const logoutForm = document.querySelector("#logoutForm")
+    
     uploadForm.addEventListener("submit", function(e){
         
         e.preventDefault();
@@ -49,8 +69,6 @@ document.addEventListener("DOMContentLoaded", function() {
               "Accept": "application/json"
             },
             body: JSON.stringify({
-              'username': `${login_username}`,
-              'password': `${login_password}`,
               'price': `${price}`,
               'description': `${description}`,
               'size': `${size}`,
@@ -66,7 +84,12 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
           })
           .then(function(json){
-
+            if (json === "bad") {
+              alert("You're probably not logged in!")
+            } else {
+              alert("post successful")
+              console.log(json)
+            }
           })
 
         
@@ -93,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
       };
 
-      fetch(SESSIONS_NEW_URL, configObj)
+      fetch(SESSIONS_URL, configObj)
       .then(function(response) {
         return response.json();
       })
@@ -129,7 +152,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
       };
 
-      fetch(USER_NEW_URL, configObj)
+      fetch(USERS_URL, configObj)
       .then(function(response) {
         return response.json();
       })

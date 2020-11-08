@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       if logged_in?
         binding.pry
       else
-        redirect_to new_session_path
+        
       end
     
     end
@@ -16,16 +16,19 @@ class SessionsController < ApplicationController
     end
   
     def create
-        
+        binding.pry
         @user = User.find_by(username: params[:username])
         status = "bad"
           if @user && @user.authenticate(params[:password])
+
             log_in @user
+            binding.pry
             status = "good"
             render json: status.to_json
           else
             render json: status.to_json
           end
+          
     end
   
   
