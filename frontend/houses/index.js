@@ -1,10 +1,3 @@
-class User {
-    constructor(username, houses_own, houses_sold) {
-        this.username = username;
-        this.houses_own = houses_own;
-        this.houses_sold = houses_sold
-    }
-};
 
 class House {
     constructor(price, description, size, style, neighborhood) {
@@ -22,30 +15,12 @@ const SESSIONS_URL = "http://localhost:3000/sessions"
 const SESSIONS_LOGOUT_URL = "http://localhost:3000/logout"
 
 document.addEventListener("DOMContentLoaded", function() { 
-  let configObj = {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json"
-    },
-  };
-
-  fetch(HOUSES_URL, configObj)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(json){
-    if (json === "good") {
-      alert("You've been Logged in!")
-    } else {
-      alert("Log in failed")
-    }
-
-  })
-    const signupForm = document.querySelector("#signupForm")
-    const signinForm = document.querySelector("#signinForm")
-    const uploadForm = document.querySelector("#uploadForm")
-    const logoutForm = document.querySelector("#logoutForm")
+  
+    const signupForm = document.querySelector("#signupForm");
+    const signinForm = document.querySelector("#signinForm");
+    const uploadForm = document.querySelector("#uploadForm");
+    const logoutForm = document.querySelector("#logoutForm");
+    const main = document.querySelector("#body");
     
     uploadForm.addEventListener("submit", function(e){
         
@@ -121,11 +96,12 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function(json){
-        if (json === "good") {
-          alert("You've been Logged in!")
-        } else {
-          alert("Log in failed")
-        }
+        json.map(house => {
+          console.log(house)
+          let tempHouse  = new House(house.price,house.description,house.size,house.style,house.neighborhood);
+          appendHouse(tempHouse);
+      });
+
 
       })
     });
@@ -190,6 +166,32 @@ document.addEventListener("DOMContentLoaded", function() {
         }
       })
     });
+
+    function appendHouse(house){
+      let card = document.createElement("div");
+      let info = document.createElement("div");
+      let pictureTab = document.createElement("div");
+      let ul = document.createElement("ul");
+      let li1 = document.createElement("li");
+      let li2 = document.createElement("li");
+      let li3 = document.createElement("li");
+      let textnode1 = document.createTextNode(house.price);
+      let textnode2 = document.createTextNode(house.size);
+      let textnode3 = document.createTextNode(house.neighborhood + "/10");
+      li1.appendChild(textnode1);
+      li2.appendChild(textnode2);
+      li3.appendChild(textnode3);
+      ul.appendChild(li1);
+      ul.appendChild(li2);
+      ul.appendChild(li3);
+      info.appendChild(ul);
+      card.appendChild(pictureTab);
+      card.appendChild(info);
+      card.classList.add("card");
+      info.classList.add("info");
+      pictureTab.classList.add("pictureTab");
+      main.appendChild(card);
+    };
 
 })
 

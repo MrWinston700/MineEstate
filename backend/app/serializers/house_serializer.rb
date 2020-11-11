@@ -7,7 +7,7 @@ class HouseSerializer < ActiveModel::Serializer
     options = {
       include: {
         user: {
-          only: [:id, :username]
+          only: [:id, :username, :state, :country, :session]
         }
       },
       except: [:updated_at, :created_at],

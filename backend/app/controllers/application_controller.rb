@@ -3,4 +3,5 @@ class ApplicationController < ActionController::API
     include SessionsHelper
 
     @@token = "0"
+    @@user = 0
 end

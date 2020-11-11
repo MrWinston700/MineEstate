@@ -2,16 +2,17 @@ module SessionsHelper
     def log_in(user)
         @@token = SecureRandom.hex
         user.token = @@token
+        user.session = 1
+        user.save
         set_current_user(user)
-        binding.pry
     end
 
     def set_current_user(user)
-        @my_user = user
+        @@user = user
     end
 
     def current_user
-        @my_user
+        @@user
     end
 
     def logged_in?
@@ -20,7 +21,9 @@ module SessionsHelper
 
     def log_out
         @@token = "0"
+        current_user.token = 0
+        current_user.session = nil
+        current_user.save
         set_current_user(nil)
-        binding.pry
     end
 end
