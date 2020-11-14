@@ -17,6 +17,13 @@ class HousesController < ApplicationController
 
     end
 
+    def destroy
+      
+      house = House.find_by_id(params[:id])
+      house.destroy
+      
+    end
+
 
     private
 

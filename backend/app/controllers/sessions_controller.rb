@@ -13,7 +13,6 @@ class SessionsController < ApplicationController
   
   
     def destroy
-      binding.pry
       log_out
       status = "good"
       render json: status.to_json

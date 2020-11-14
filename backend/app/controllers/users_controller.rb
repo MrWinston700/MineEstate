@@ -9,8 +9,8 @@ class UsersController < ApplicationController
           @user.save
           
           log_in @user
-          status = "good"
-          render json: status.to_json
+          allHouses = House.all
+          render json: HouseSerializer.new(allHouses).to_serialized_json
         end
     end
    

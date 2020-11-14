@@ -1,11 +1,13 @@
 
 class House {
-    constructor(price, description, size, style, neighborhood) {
+    constructor(price, description, size, style, neighborhood, myHouse, ident) {
         this.price = price;
         this.description = description;
         this.size = size;
         this.style = style;
         this.neighborhood = neighborhood
+        this.myHouse = myHouse
+        this.ident = ident
     }
 };
 
@@ -13,7 +15,7 @@ const HOUSES_URL = "http://localhost:3000/houses"
 const USERS_URL = "http://localhost:3000/users"
 const SESSIONS_URL = "http://localhost:3000/sessions"
 const SESSIONS_LOGOUT_URL = "http://localhost:3000/logout"
-
+let instances = []
 document.addEventListener("DOMContentLoaded", function() { 
   
     const signupForm = document.querySelector("#signupForm");
@@ -32,10 +34,6 @@ document.addEventListener("DOMContentLoaded", function() {
         const style = document.querySelector("#style").value;
         const neighborhood = document.querySelector("#neighborhood").value;
         const pics = document.querySelector("#files").all;
-        
-        console.log(pics);
-        let current_house = new House(price,description,size,style,neighborhood);
-        
         
         let configObj = {
             method: "POST",
@@ -59,19 +57,32 @@ document.addEventListener("DOMContentLoaded", function() {
             return response.json();
           })
           .then(function(json){
-            if (json === "bad") {
-              alert("You're probably not logged in!")
-            } else {
-              alert("post successful")
-              console.log(json)
-            }
+            mimicReset(json);
+
           })
+          .then(function(){
+            console.log(instances)
+          })
+
 
         
 
         
     
     });
+
+    function mimicReset(json){
+      deleteAllCard()
+        instances = []
+        json.map(house => {
+          let tempHouse  = new House(house.price, house.description, house.size, house.style, house.neighborhood, house.user.session, house.id);
+          instances.push(tempHouse);
+        })
+
+        instances.map(house => {
+          appendHouse(house);
+        })
+    };
 
     signinForm.addEventListener("submit", function(e){
       e.preventDefault();
@@ -96,14 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function(json){
-        json.map(house => {
-          console.log(house)
-          let tempHouse  = new House(house.price,house.description,house.size,house.style,house.neighborhood);
-          appendHouse(tempHouse);
-      });
-
-
+        mimicReset(json)
       })
+      
     });
 
     signupForm.addEventListener("submit", function(e){
@@ -133,13 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function(json){
-      
-        if (json === "good") {
-          alert("You've been Logged in!")
-        } else {
-          alert("Log in failed")
-        }
-        
+        mimicReset();
       })
     });
 
@@ -160,13 +160,15 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(function(json){
         if (json === "good") {
+          deleteAllCard();
           alert("You've been Logged out!")
         } else {
-          alert("Log in failed?")
+          alert("Log out failed?")
         }
       })
     });
 
+  
     function appendHouse(house){
       let card = document.createElement("div");
       let info = document.createElement("div");
@@ -175,13 +177,17 @@ document.addEventListener("DOMContentLoaded", function() {
       let li1 = document.createElement("li");
       let li2 = document.createElement("li");
       let li3 = document.createElement("li");
-      let textnode1 = document.createTextNode(house.price);
-      let textnode2 = document.createTextNode(house.size);
-      let textnode3 = document.createTextNode(house.neighborhood + "/10");
+      let li4 = document.createElement("li");
+      let textnode1 = document.createTextNode("PRICE: " + house.price);
+      let textnode2 = document.createTextNode("SIZE: " + house.size);
+      let textnode3 = document.createTextNode("NEIGHBORHOOD: " + house.neighborhood + "/10");
+      let textnode4 = document.createTextNode("DESCRIPTION: " + house.description);
       li1.appendChild(textnode1);
       li2.appendChild(textnode2);
       li3.appendChild(textnode3);
+      li4.appendChild(textnode4)
       ul.appendChild(li1);
+      ul.appendChild(li4);
       ul.appendChild(li2);
       ul.appendChild(li3);
       info.appendChild(ul);
@@ -191,7 +197,32 @@ document.addEventListener("DOMContentLoaded", function() {
       info.classList.add("info");
       pictureTab.classList.add("pictureTab");
       main.appendChild(card);
+      if (house.myHouse === 1) {
+        let delete_button = document.createElement("button");
+        let label = document.createTextNode("delete");
+        delete_button.setAttribute("house_id", house.ident);
+        delete_button.appendChild(label);
+        info.appendChild(delete_button);
+        delete_button.addEventListener("click", function(){
+          console.log(house.ident)
+          let configObj = {
+            method: "DELETE",
+            headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+            }
+          }
+        
+          fetch(HOUSES_URL + `/${house.ident}`, configObj);
+          delete_button.parentNode.parentNode.remove();
+        })
+      }
     };
+
+    function deleteAllCard(){
+      main.querySelectorAll('*').forEach(n => n.remove());
+    }
+      
 
 })
 
