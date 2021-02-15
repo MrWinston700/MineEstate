@@ -20,7 +20,11 @@ class HousesController < ApplicationController
     def destroy
       
       house = House.find_by_id(params[:id])
-      house.destroy
+      if current_user.houses.include?(house)
+        house.destroy
+        status = "good"
+        render json: status.to_json
+      end
       
     end
 

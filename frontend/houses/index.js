@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         e.preventDefault();
         console.log("it worked!!")
-        const price = document.querySelector("#price").value;
+        let price = document.querySelector("#price").value;
         const description = document.querySelector("#description").value;
         const size = document.querySelector("#size").value;
         const style = document.querySelector("#style").value;
@@ -58,12 +58,13 @@ document.addEventListener("DOMContentLoaded", function() {
           })
           .then(function(json){
             mimicReset(json);
+            document.querySelector("#price").value = ""
+            document.querySelector("#description").value = ""
+            document.querySelector("#size").value = ""
+            document.querySelector("#style").value = ""
+            document.querySelector("#neighborhood").value = ""
 
           })
-          .then(function(){
-            console.log(instances)
-          })
-
 
         
 
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         })
 
         instances.map(house => {
-          appendHouse(house);
+          createHouse(house);
         })
     };
 
@@ -108,6 +109,8 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(function(json){
         mimicReset(json)
+        document.querySelector("#login_username").value = ""
+        document.querySelector("#login_password").value = ""
       })
       
     });
@@ -139,7 +142,12 @@ document.addEventListener("DOMContentLoaded", function() {
         return response.json();
       })
       .then(function(json){
-        mimicReset();
+        mimicReset(json);
+        document.querySelector("#signup_username").value = ""
+        document.querySelector("#signup_password").value = ""
+        document.querySelector("#email").value = ""
+        document.querySelector("#country").value = ""
+        document.querySelector("#state").value = ""
       })
     });
 
@@ -169,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
   
-    function appendHouse(house){
+    function createHouse(house){
       let card = document.createElement("div");
       let info = document.createElement("div");
       let pictureTab = document.createElement("div");
@@ -182,10 +190,15 @@ document.addEventListener("DOMContentLoaded", function() {
       let textnode2 = document.createTextNode("SIZE: " + house.size);
       let textnode3 = document.createTextNode("NEIGHBORHOOD: " + house.neighborhood + "/10");
       let textnode4 = document.createTextNode("DESCRIPTION: " + house.description);
+      appendCard(ul,li1,li2,li3,li4,info,card,house, textnode1, textnode2, textnode3, textnode4, pictureTab);
+      
+    };
+
+    function appendCard(ul,li1,li2,li3,li4,info,card,house,textnode1,textnode2,textnode3,textnode4,pictureTab){
       li1.appendChild(textnode1);
       li2.appendChild(textnode2);
       li3.appendChild(textnode3);
-      li4.appendChild(textnode4)
+      li4.appendChild(textnode4);
       ul.appendChild(li1);
       ul.appendChild(li4);
       ul.appendChild(li2);
@@ -197,6 +210,11 @@ document.addEventListener("DOMContentLoaded", function() {
       info.classList.add("info");
       pictureTab.classList.add("pictureTab");
       main.appendChild(card);
+      addDeleteButton(house, info);
+
+    }
+
+    function addDeleteButton(house, info){
       if (house.myHouse === 1) {
         let delete_button = document.createElement("button");
         let label = document.createTextNode("delete");
@@ -217,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
           delete_button.parentNode.parentNode.remove();
         })
       }
-    };
+    } 
 
     function deleteAllCard(){
       main.querySelectorAll('*').forEach(n => n.remove());
