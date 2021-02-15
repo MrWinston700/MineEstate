@@ -16,7 +16,7 @@ div.pictureTab {
 }
 
   body {
-    margin: auto;
+   
     background-color: #e6e6e6;
     
   }
@@ -31,12 +31,12 @@ div.pictureTab {
     padding-bottom: 30px;
   }
 
-  div#justPic {
+  div#futurePicture {
     background-color: coral;
     height: 300px;
   }
 
-  #head {
+  #nav {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     text-align: center;
