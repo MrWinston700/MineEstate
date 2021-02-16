@@ -11,11 +11,14 @@ class House {
     }
 };
 
+let instances = []
+
 const HOUSES_URL = "http://localhost:3000/houses"
 const USERS_URL = "http://localhost:3000/users"
 const SESSIONS_URL = "http://localhost:3000/sessions"
 const SESSIONS_LOGOUT_URL = "http://localhost:3000/logout"
-let instances = []
+
+
 document.addEventListener("DOMContentLoaded", function() { 
   
     const signupForm = document.querySelector("#signupForm");
@@ -71,19 +74,6 @@ document.addEventListener("DOMContentLoaded", function() {
         
     
     });
-
-    function mimicReset(json){
-      deleteAllCard()
-        instances = []
-        json.map(house => {
-          let tempHouse  = new House(house.price, house.description, house.size, house.style, house.neighborhood, house.user.session, house.id);
-          instances.push(tempHouse);
-        })
-
-        instances.map(house => {
-          createHouse(house);
-        })
-    };
 
     signinForm.addEventListener("submit", function(e){
       e.preventDefault();
@@ -143,11 +133,7 @@ document.addEventListener("DOMContentLoaded", function() {
       })
       .then(function(json){
         mimicReset(json);
-        document.querySelector("#signup_username").value = ""
-        document.querySelector("#signup_password").value = ""
-        document.querySelector("#email").value = ""
-        document.querySelector("#country").value = ""
-        document.querySelector("#state").value = ""
+        
       })
     });
 
@@ -176,7 +162,26 @@ document.addEventListener("DOMContentLoaded", function() {
       })
     });
 
+    // mimic rendering the page and clearing the fields
+    function mimicReset(json){
+      document.querySelector("#signup_username").value = ""
+      document.querySelector("#signup_password").value = ""
+      document.querySelector("#email").value = ""
+      document.querySelector("#country").value = ""
+      document.querySelector("#state").value = ""
+      deleteAllCard()
+        instances = []
+        json.map(house => {
+          let tempHouse  = new House(house.price, house.description, house.size, house.style, house.neighborhood, house.user.session, house.id);
+          instances.push(tempHouse);
+        })
+
+        instances.map(house => {
+          createHouse(house);
+        })
+    };
   
+    // sets up an empty card
     function createHouse(house){
       let card = document.createElement("div");
       let info = document.createElement("div");
@@ -194,6 +199,7 @@ document.addEventListener("DOMContentLoaded", function() {
       
     };
 
+    // this function will add the house cards to the dom with all their info
     function appendCard(ul,li1,li2,li3,li4,info,card,house,textnode1,textnode2,textnode3,textnode4,pictureTab){
       li1.appendChild(textnode1);
       li2.appendChild(textnode2);
@@ -214,6 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    // adds delete functionality to the cards
     function addDeleteButton(house, info){
       if (house.myHouse === 1) {
         let delete_button = document.createElement("button");
