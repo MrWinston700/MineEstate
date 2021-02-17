@@ -2,9 +2,16 @@
 
 # Video Walkthrough
 
-# MineEstate
+https://youtu.be/upk1d2a8MD8
 
-This was built using a Rails API back end, which communicates with the front end via html, css, and vanilla javascript.
+# tools used
+
+Ruby on Rails, SQLite, Javascript
+
+# features
+
+User can sign in or sign up
+User can post their house description and delete it 
 
 ## Overview
 
@@ -31,7 +38,7 @@ Backend terminal instructions:
     $ rails s
 
 Frontend terminal instructions:
-    use a browser to open the html file. For example:
+    use a web browser to open the following html file. For example:
     
     $ firefox houses/index.html
 
