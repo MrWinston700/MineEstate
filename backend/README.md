@@ -47,6 +47,15 @@ Frontend terminal instructions:
 User will have to sign up or log in to fully interact with website.  
 Once logged in, user can create a house and delete it as long as it belongs to them
 
+## challenge
+
+Most challenging aspect of this project was creating a fake user authentication due using rails as an api and time constraints. Also, finding a use case for javascript class in this project was a rather difficult addition
+
+## future implementations
+
+ ui overhaul
+ Storage for pictures using rails blob
+
 ## Contributing
 
 This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
