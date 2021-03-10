@@ -1,14 +1,14 @@
 # MineEstate README
 
-# Video Walkthrough
+## Video Walkthrough
 
 https://youtu.be/upk1d2a8MD8
 
-# Tools Used
+## Tools Used
 
 Ruby on Rails, SQLite, JavaScript
 
-# Features
+## Features
 
 User can sign in or sign up
 User can post their house description and delete it 
