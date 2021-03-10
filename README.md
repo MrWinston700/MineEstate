@@ -4,11 +4,11 @@
 
 https://youtu.be/upk1d2a8MD8
 
-# tools used
+# Tools Used
 
-Ruby on Rails, SQLite, Javascript
+Ruby on Rails, SQLite, JavaScript
 
-# features
+# Features
 
 User can sign in or sign up
 User can post their house description and delete it 
@@ -47,11 +47,11 @@ Frontend terminal instructions:
 User will have to sign up or log in to fully interact with website.  
 Once logged in, user can create a house and delete it as long as it belongs to them
 
-## challenge
+## Challenge
 
 Most challenging aspect of this project was creating a fake user authentication due using rails as an api and time constraints. Also, finding a use case for javascript class in this project was a rather difficult addition
 
-## future implementations
+## Future Implementations
 
  ui overhaul
  Storage for pictures using rails blob
