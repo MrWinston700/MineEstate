@@ -15,7 +15,7 @@ User can post their house description and delete it
 
 ## Overview
 
-This project was focused on learning javascript and using it to manipulate the DOM while following the languages best practices
+This project was focused on learning javaScript and using it to manipulate the DOM while following the languages best practices
 
 ## Installation
 
@@ -53,8 +53,8 @@ Most challenging aspect of this project was creating a fake user authentication 
 
 ## Future Implementations
 
- ui overhaul
- Storage for pictures using rails blob
+ UI overhaul
+ Storage for pictures using Rails blob
 
 ## Contributing
 
