@@ -49,7 +49,7 @@ Once logged in, user can create a house and delete it as long as it belongs to t
 
 ## Challenge
 
-Most challenging aspect of this project was creating a fake user authentication due using rails as an api and time constraints. Also, finding a use case for javascript class in this project was a rather difficult addition
+Most challenging aspect of this project was creating a fake user authentication due using rails as an API and time constraints. Also, finding a use case for javascript class in this project was a rather difficult addition
 
 ## Future Implementations
 
