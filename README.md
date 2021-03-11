@@ -1,4 +1,4 @@
-# MineEstate README
+# MineEstate
 
 ## Video Walkthrough
 
@@ -15,7 +15,7 @@ User can post their house description and delete it
 
 ## Overview
 
-This project was focused on learning javaScript and using it to manipulate the DOM while following the languages best practices
+This project was focused on learning JavaScript and using it to manipulate the DOM while following the languages best practices
 
 ## Installation
 
